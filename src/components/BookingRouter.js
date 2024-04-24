@@ -10,13 +10,13 @@ import About from './About';
 function BookingRouter() {
     return (
       <Router>
-          <Header />
-          <Routes>
-            <Route path="/booking-list" element={<BookingList />} />
-            <Route path="/cancel-booking" element={<CancelBooking />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
+        <Header />
+        <Routes>
+          <Route path="/booking-list" element={<BookingList />} />
+          <Route path="/cancel-booking" element={<CancelBooking />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
       </Router>
     );
   }

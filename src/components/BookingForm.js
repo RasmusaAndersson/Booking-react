@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function BookingForm({ bookingDetails }) {
   const [email, setEmail] = useState('');
@@ -8,18 +9,15 @@ function BookingForm({ bookingDetails }) {
   const handleBooking = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/v1/booking/book', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, ...bookingDetails }),
+      const response = await axios.post('http://localhost:3000/api/v1/booking/book', {
+        email,
+        ...bookingDetails
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         navigate('/booking-list');
       } else {
-        console.error('Failed to book');
+        console.error('Failed to book', response.data);
       }
     } catch (error) {
       console.error('Error during booking:', error);
